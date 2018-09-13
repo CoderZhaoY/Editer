@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Plugins</name>
+    </assembly>
+    <members>
+        <member name="T:Editer.PluginKernel.IApplicationObject">
+            <summary>
+            应用程序接口
+            </summary>
+        </member>
+        <member name="M:Editer.PluginKernel.IApplicationObject.Alert(System.String)">
+            <summary>
+            产生一条消息
+            </summary>
+        </member>
+        <member name="M:Editer.PluginKernel.IApplicationObject.ShowInStatusBar(System.String)">
+            <summary>
+            将指定的信息显示在状态栏
+            </summary>
+        </member>
+        <member name="M:Editer.PluginKernel.IApplicationObject.QueryCurrentDocument">
+            <summary>
+            获取当前使用的文档对象
+            </summary>
+        </member>
+        <member name="M:Editer.PluginKernel.IApplicationObject.QueryDocuments">
+            <summary>
+            获取当前所有的文档对象
+            </summary>
+        </member>
+        <member name="M:Editer.PluginKernel.IApplicationObject.SetDelegate(Editer.PluginKernel.Delegates,System.EventHandler)">
+            <summary>
+            设置事件处理器
+            </summary>
+        </member>
+        <member name="T:Editer.PluginKernel.Delegates">
+            <summary>
+            该接口支持的事件类型
+            </summary>
+        </member>
+        <member name="F:Editer.PluginKernel.Delegates.Delegate_ActiveDocumentChanged">
+            <summary>
+            当文本发生改变时，触发事件（未使用）
+            </summary>
+        </member>
+        <member name="T:Editer.PluginKernel.IDocumentObject">
+            <summary>
+            文档接口
+            </summary>
+        </member>
+        <member name="P:Editer.PluginKernel.IDocumentObject.DocSelectionText">
+            <summary>
+            同richtextbox
+            </summary>
+        </member>
+        <member name="P:Editer.PluginKernel.IDocumentObject.DocSelectionColor">
+            <summary>
+            同richtextbox
+            </summary>
+        </member>
+        <member name="P:Editer.PluginKernel.IDocumentObject.DocSelectionFont">
+            <summary>
+            同richtextbox
+            </summary>
+        </member>
+        <member name="P:Editer.PluginKernel.IDocumentObject.DocSelectionStart">
+            <summary>
+            同richtextbox
+            </summary>
+        </member>
+        <member name="P:Editer.PluginKernel.IDocumentObject.DocSelectionLength">
+            <summary>
+            同richtextbox
+            </summary>
+        </member>
+        <member name="P:Editer.PluginKernel.IDocumentObject.DocSelectionRTF">
+            <summary>
+            同richtextbox
+            </summary>
+        </member>
+        <member name="P:Editer.PluginKernel.IDocumentObject.DocHasChanges">
+            <summary>
+            指示文档是否发生改变
+            </summary>
+        </member>
+        <member name="M:Editer.PluginKernel.IDocumentObject.DocSelect(System.Int32,System.Int32)">
+             <summary>
+            选择文档内容
+             </summary>
+        </member>
+        <member name="M:Editer.PluginKernel.IDocumentObject.DocAppendText(System.String)">
+            <summary>
+            向文档中追加文本
+            </summary>
+            <param name="str"></param>
+        </member>
+        <member name="M:Editer.PluginKernel.IDocumentObject.DocSaveFile(System.String)">
+            <summary>
+            保存文档
+            </summary>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:Editer.PluginKernel.IDocumentObject.DocSaveFile">
+            <summary>
+            保存文档
+            </summary>
+        </member>
+        <member name="M:Editer.PluginKernel.IDocumentObject.DocOpenFile(System.String)">
+            <summary>
+            打开文档
+            </summary>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:Editer.PluginKernel.IDocumentObject.DocCloseFile">
+            <summary>
+            关闭文档
+            </summary>
+        </member>
+        <member name="T:Editer.PluginKernel.IPlugin">
+            <summary>
+            插件接口，所有插件必须继承此接口，并实现其方法
+            </summary>
+        </member>
+        <member name="M:Editer.PluginKernel.IPlugin.Connect(Editer.PluginKernel.IApplicationObject)">
+            <summary>
+            连接到应用程序
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Editer.PluginKernel.IPlugin.OnDestory">
+            <summary>
+            销毁插件
+            </summary>
+        </member>
+        <member name="M:Editer.PluginKernel.IPlugin.OnLoad">
+            <summary>
+            加载插件
+            </summary>
+        </member>
+        <member name="M:Editer.PluginKernel.IPlugin.Run(System.Windows.Forms.RichTextBox)">
+            <summary>
+            表示插件发生作用
+            </summary>
+            <param name="OperateRtb"></param>
+        </member>
+        <member name="M:Editer.PluginKernel.IPlugin.FormatText(System.Windows.Forms.RichTextBox)">
+            <summary>
+            格式化RichTextBox
+            </summary>
+            <param name="OperateRtb"></param>
+        </member>
+        <member name="M:Editer.PluginKernel.IPlugin.FormatTextBySettings(System.Windows.Forms.RichTextBox,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            以指定格式格式化文本
+            </summary>
+            <param name="OperateRtb"></param>
+            <param name="formate"></param>
+        </member>
+        <member name="T:Editer.PluginKernel.ConnectionResult">
+            <summary>
+            表示与应用程序的连接结果
+            </summary>
+        </member>
+        <member name="F:Editer.PluginKernel.ConnectionResult.Connection_Success">
+            <summary>
+            连接成功
+            </summary>
+        </member>
+        <member name="F:Editer.PluginKernel.ConnectionResult.Connection_Failed">
+            <summary>
+            连接失败
+            </summary>
+        </member>
+        <member name="T:Editer.PluginKernel.PluginInfoAttribute">
+            <summary>
+            插件信息
+            </summary>
+        </member>
+        <member name="M:Editer.PluginKernel.PluginInfoAttribute.#ctor(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            初始化插件版本信息
+            </summary>
+            <param name="name">名称</param>
+            <param name="version">版本</param>
+            <param name="authro">作者</param>
+            <param name="webpage">网址</param>
+            <param name="loadWhenStart">是否在启动时加载</param>
+        </member>
+        <member name="P:Editer.PluginKernel.PluginInfoAttribute.Name">
+            <summary>
+            插件名称
+            </summary>
+        </member>
+        <member name="P:Editer.PluginKernel.PluginInfoAttribute.Version">
+            <summary>
+            插件版本
+            </summary>
+        </member>
+        <member name="P:Editer.PluginKernel.PluginInfoAttribute.Author">
+            <summary>
+            插件作者
+            </summary>
+        </member>
+        <member name="P:Editer.PluginKernel.PluginInfoAttribute.WebPage">
+            <summary>
+            个人网址
+            </summary>
+        </member>
+        <member name="P:Editer.PluginKernel.PluginInfoAttribute.LoadWhenStart">
+            <summary>
+            是否在启动时加载
+            </summary>
+        </member>
+        <member name="P:Editer.PluginKernel.PluginInfoAttribute.Tag">
+            <summary>
+            存储有用的信息
+            </summary>
+        </member>
+        <member name="P:Editer.PluginKernel.PluginInfoAttribute.Index">
+            <summary>
+            存储序号
+            </summary>
+        </member>
+        <member name="M:Editer.MyPlugin.Run(System.Windows.Forms.RichTextBox)">
+            <summary>
+            统计字符数
+            </summary>
+            <param name="OperateRtb"></param>
+        </member>
+    </members>
+</doc>

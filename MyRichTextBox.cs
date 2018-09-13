@@ -11,7 +11,6 @@ namespace Editer
 {
     class MyRichTextBox : RichTextBox, IDocumentObject
     {
-        public event EventHandler Event;
 
         public string DocSelectionText { get => SelectedText; set { DocSelectionText = SelectedText; } }
         public Color DocSelectionColor { get => SelectionColor; set { DocSelectionColor = SelectionColor; } }

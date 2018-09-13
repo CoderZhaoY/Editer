@@ -58,15 +58,8 @@ namespace Editer
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //加载
             this.Text = textFileName + " - " + programeName;//显示文件名
             this.timer1.Start();
-            //加载插件：
-          //  string[] plugsPath = Directory.GetFiles(plugPath,"*.dll");
-            //for (int i = 0; i < plugsPath.Length; i++)
-            //{
-               
-            //}
             GetPlug(plugPath);
         }
 
@@ -226,7 +219,7 @@ namespace Editer
         #region 事件
         private void editBox1_TextChanged(object sender, EventArgs e)
         {
-            statusStrip1.Text = "已修改";
+            infoLb.Text = "已修改";
             myRiches[currentIndex].Modified = true;
         }
 
@@ -264,7 +257,7 @@ namespace Editer
             int index = myRiches[currentIndex].GetFirstCharIndexOfCurrentLine();//得到当前行第一个字符的索引
             int line = myRiches[currentIndex].GetLineFromCharIndex(index) + 1;//得到当前行的行号
             int col = myRiches[currentIndex].SelectionStart - index + 1;//.SelectionStart得到光标所在位置的索引 - 当前行第一个字符的索引 = 光标所在的列数
-            statusStrip1.Text = "第" + line + "行，第" + col + "列";
+            infoLb.Text = "第" + line + "行，第" + col + "列";
             if (myRiches[currentIndex].SelectedText.Equals(""))
             {
                 cutButton.Enabled = false;
@@ -346,7 +339,7 @@ namespace Editer
                 FileInfo fileInfo = new FileInfo(saveAsFile.FileName);
                 myRiches[currentIndex].Tag = fileInfo.Name;
             }
-            statusStrip1.Text = "已保存";
+            msgLb.Text = "已保存";
         }
         private void newFile()
         {
@@ -374,7 +367,7 @@ namespace Editer
                     myRiches[currentIndex].Parent.Text = Path.GetFileNameWithoutExtension(saveFile.FileName);
                 }
             }
-            statusStrip1.Text = "已保存";
+            msgLb.Text = "已保存";
         }
         private void openFile()
         {
@@ -436,9 +429,9 @@ namespace Editer
             {
                 types = asm.GetTypes();
             }
-            catch (Exception ex)
+            catch (Exception ex )
             {
-
+                MessageBox.Show("无法加载的程序集"+ex.Message);
                 throw;
             }
 
@@ -450,9 +443,9 @@ namespace Editer
                     {
                         plugins.Add((IPlugin)asm.CreateInstance(t.FullName));
                     }
-                    catch (Exception ex)
+                    catch (Exception ex )
                     {
-
+                        MessageBox.Show("加载插件失败：错误的类型;"+ex.Message);
                         throw;
                     }
                     
@@ -479,13 +472,13 @@ namespace Editer
 
         public void Alert(string msg)
         {
-            MessageBox.Show(msg);
+            msgLb.Text = msg;
             
         }
 
         public void ShowInStatusBar(string msg)
         {
-            statusStrip1.Text = msg;
+            msgLb.Text = msg;
         }
 
         public IDocumentObject QueryCurrentDocument()
