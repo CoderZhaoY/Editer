@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Editer", "Editer.csproj", "{21163F98-1B24-41D9-B197-0B8D8DFA0FE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugins", "..\Plugins\Plugins.csproj", "{5B03ABB9-2E05-495A-8EF0-2703ACFC309F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSPluginKernel", "CSPluginKernel\CSPluginKernel.csproj", "{46155EDF-59F5-49B4-B308-F5D530F21774}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21163F98-1B24-41D9-B197-0B8D8DFA0FE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21163F98-1B24-41D9-B197-0B8D8DFA0FE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21163F98-1B24-41D9-B197-0B8D8DFA0FE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21163F98-1B24-41D9-B197-0B8D8DFA0FE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B03ABB9-2E05-495A-8EF0-2703ACFC309F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B03ABB9-2E05-495A-8EF0-2703ACFC309F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B03ABB9-2E05-495A-8EF0-2703ACFC309F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B03ABB9-2E05-495A-8EF0-2703ACFC309F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46155EDF-59F5-49B4-B308-F5D530F21774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46155EDF-59F5-49B4-B308-F5D530F21774}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46155EDF-59F5-49B4-B308-F5D530F21774}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46155EDF-59F5-49B4-B308-F5D530F21774}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F6C6F0DB-1491-401C-BBA2-D32C728A19DC}
+	EndGlobalSection
+EndGlobal
