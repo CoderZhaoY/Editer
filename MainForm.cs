@@ -1,20 +1,18 @@
 ﻿
 using CSPluginKernel;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Editer
 {
+    /// <summary>
+    /// 一款插件架构的编辑器
+    /// </summary>
     public partial class MainForm : Form,IApplicationObject
     {
         private string textFileName = "未命名";
@@ -26,69 +24,54 @@ namespace Editer
         private string wrongMessage = "你好像遇到了错误...";
         private string fileFormat = "文本文件(*.txt)|*.txt|Icey文件(*.ice)|*.ice|C++文件(*.cpp)|*.cpp|C文件(*.c)|*.c|所有文件(*.*)|(*.*)";
         private int currentIndex = 0;
-        public static List<IPlugin> plugins = new List<IPlugin>();
-        public static ArrayList piPer = new ArrayList();
-        List<MyRichTextBox> myRiches = new List<MyRichTextBox>();
-        private string plugPath = @"E:\Code\CSharp\WinForm\DEMO\Editer\Plugins\Plugins.dll";
-
+        List<MyRichTextBox> myRiches = new List<MyRichTextBox>();      
+        /// <summary>
+        /// 初始化编辑器
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
-            MyRichTextBox editBox1 = new MyRichTextBox();
-            editBox1.TextChanged += EditBox1_TextChanged;
-            editBox1.Tag = textFileName + "-" +0;
-            editBox1.Size = tabPage1.Size;
-            editBox1.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-            editBox1.Name = "edit" + (myRiches.Count - 1).ToString();
-            editBox1.TextChanged += editBox1_TextChanged;
-            myRiches.Add(editBox1);
-            tabPage1.Text = editBox1.Tag.ToString();
-            tabPage1.Controls.Add(editBox1);
+            #region 
+            InitDocument();
+            #endregion
 
-
-        }
-
-        private void EditBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (plugins.Count > 0)
-            {
-                plugins[0].Run(myRiches[currentIndex]);
-            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            this.Text = textFileName + " - " + programeName;//显示文件名
-            this.timer1.Start();
-            GetPlug(plugPath);
+            this.Text = textFileName + " - " + programeName;
+            this.DocTimer.Start();
+            PluginLoader.GetPlug(ConfigurationManager.AppSettings["PluginPath"]);
+            PluginLoader.LoadPlugins(this, 插件ToolStripMenuItem);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-          
-                
-        }
+
         #region  菜单
         private void 日期ToolStripMenuItem_Click(object sender, EventArgs e)
         {
                 myRiches[currentIndex].AppendText(System.DateTime.Now.ToString());   
         }
+
         private void 保存ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             saveFile();
         }
+
         private void 新建ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             newFile();
         }
+
         private void 另存为ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             saveAsFile();
         }
+
         private void 打开ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFile();
         }
+
         private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < myRiches.Count; i++)
@@ -177,10 +160,6 @@ namespace Editer
 
         private void 关于ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            AboutBox1 about = new AboutBox1();
-            about.StartPosition = FormStartPosition.CenterScreen;
-            about.Show();
-            about.Owner = this;
         }
 
         private void 自动换行ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -203,6 +182,7 @@ namespace Editer
         {
 
         }
+
         private void 字体ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FontDialog fontDialog = new FontDialog();
@@ -211,10 +191,12 @@ namespace Editer
                 myRiches[currentIndex].Font = fontDialog.Font;
             }
         }
+
         private void 全屏ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fullScreen();
         }
+
         #endregion
         #region 事件
         private void editBox1_TextChanged(object sender, EventArgs e)
@@ -250,10 +232,10 @@ namespace Editer
                 Application.Exit();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void DocTimer_Tick(object sender, EventArgs e)
         {
             statusStrip1.Text = myRiches[currentIndex].Text.Length.ToString();
-            int totalline =  myRiches[currentIndex].GetLineFromCharIndex(myRiches[currentIndex].Text.Length) + 1 ;//得到总行数
+            int totalline = myRiches[currentIndex].GetLineFromCharIndex(myRiches[currentIndex].Text.Length) + 1;//得到总行数
             int index = myRiches[currentIndex].GetFirstCharIndexOfCurrentLine();//得到当前行第一个字符的索引
             int line = myRiches[currentIndex].GetLineFromCharIndex(index) + 1;//得到当前行的行号
             int col = myRiches[currentIndex].SelectionStart - index + 1;//.SelectionStart得到光标所在位置的索引 - 当前行第一个字符的索引 = 光标所在的列数
@@ -270,9 +252,9 @@ namespace Editer
                 copyButton.Enabled = true;
                 deleteButton.Enabled = true;
             }
-            if (myRiches[currentIndex].Tag!=null)
+            if (myRiches[currentIndex].Tag != null)
             {
-                this.Text = myRiches[currentIndex].Tag.ToString()+"-"+programeName;
+                this.Text = myRiches[currentIndex].Tag.ToString() + "-" + programeName;
             }
             else
             {
@@ -323,8 +305,14 @@ namespace Editer
             currentIndex = tabControl1.SelectedIndex;
         }
 
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            currentIndex = tabControl1.SelectedIndex;
+        }
         #endregion
         #region  工具函数
+
+
         private void saveAsFile()
         {
             SaveFileDialog saveAsFile = new SaveFileDialog();
@@ -341,6 +329,7 @@ namespace Editer
             }
             msgLb.Text = "已保存";
         }
+
         private void newFile()
         {
             AddNewDocumentObj();
@@ -349,6 +338,7 @@ namespace Editer
 
 
         }
+
         private void saveFile()
         {
             if (!textFileName.Equals(""))
@@ -369,6 +359,7 @@ namespace Editer
             }
             msgLb.Text = "已保存";
         }
+
         private void openFile()
         {
             OpenFileDialog openFile = new OpenFileDialog();
@@ -386,6 +377,7 @@ namespace Editer
                 textFileName = fileInfo.Name;
             }
         }
+
         private void fullScreen()
         {
             if (全屏ToolStripMenuItem.Checked == false)
@@ -402,9 +394,25 @@ namespace Editer
             }
         }
 
+        private void InitDocument()
+        {
+            MyRichTextBox editBox1 = new MyRichTextBox();
+            editBox1.AcceptsTab = true;
+            editBox1.TextChanged += EditBox1_TextChanged;
+            editBox1.Tag = textFileName + "-" + 0;
+            editBox1.Size = tabPage1.Size;
+            editBox1.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
+            editBox1.Name = "edit" + (myRiches.Count - 1).ToString();
+            editBox1.TextChanged += editBox1_TextChanged;
+            myRiches.Add(editBox1);
+            tabPage1.Text = editBox1.Tag.ToString();
+            tabPage1.Controls.Add(editBox1);
+        }
+
         private void AddNewDocumentObj()
         {
             MyRichTextBox editBox1 = new MyRichTextBox();
+            editBox1.AcceptsTab = true;
             editBox1.Tag = textFileName + "-" + tabControl1.TabPages.Count;
             editBox1.Size = tabPage1.Size;
             editBox1.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
@@ -418,74 +426,47 @@ namespace Editer
             tabControl1.TabPages[tabControl1.TabPages.Count - 1].Controls.Add(editBox1);
         }
         #endregion
+        #region 插件流程
 
-
-
-        private void GetPlug(string plugPath)
+        private void EditBox1_TextChanged(object sender, EventArgs e)
         {
-            Assembly asm = Assembly.LoadFrom(plugPath);
-            Type[] types;
-            try
+            if (PluginLoader.plugins.Count > 0)
             {
-                types = asm.GetTypes();
+                PluginLoader.plugins[0].Work(myRiches[currentIndex]);
             }
-            catch (Exception ex )
-            {
-                MessageBox.Show("无法加载的程序集"+ex.Message);
-                throw;
-            }
-
-            foreach (Type t in types)
-            {
-                if (IsValidPlugin(t))
-                {
-                    try
-                    {
-                        plugins.Add((IPlugin)asm.CreateInstance(t.FullName));
-                    }
-                    catch (Exception ex )
-                    {
-                        MessageBox.Show("加载插件失败：错误的类型;"+ex.Message);
-                        throw;
-                    }
-                    
-                }
-            }
-            plugins[0].Connect(this);
         }
+        #endregion
 
-        private bool IsValidPlugin(Type t)
-        {
-            bool ret = false;
-            Type[] interfaces = t.GetInterfaces();
-            foreach (Type theInterface in interfaces)
-            {
-                if (theInterface.FullName == "CSPluginKernel.IPlugin")
-                {
-                    ret = true;
-                    break;
-                }
-
-            }
-            return ret;
-        }
-
+        #region 插件工具函数
+        /// <summary>
+        /// 向界面返回提示信息
+        /// </summary>
+        /// <param name="msg"></param>
         public void Alert(string msg)
         {
             msgLb.Text = msg;
-            
-        }
 
+        }
+        /// <summary>
+        /// 向状态栏输出结果信息
+        /// </summary>
+        /// <param name="msg"></param>
         public void ShowInStatusBar(string msg)
         {
             msgLb.Text = msg;
         }
-
+        /// <summary>
+        /// 获取当前使用的文档对象
+        /// </summary>
+        /// <returns></returns>
         public IDocumentObject QueryCurrentDocument()
         {
             return myRiches[currentIndex];
         }
-
+        /// <summary>
+        /// 获取所有文档对象
+        /// </summary>
+        /// <returns></returns>
         public IDocumentObject[] QueryDocuments()
         {
             IDocumentObject[] documents = new IDocumentObject[myRiches.Count];
@@ -495,15 +476,18 @@ namespace Editer
             }
             return documents;
         }
-
+        /// <summary>
+        /// 设置响应事件
+        /// </summary>
+        /// <param name="whichOne"></param>
+        /// <param name="targer"></param>
         public void SetDelegate(Delegates whichOne, EventHandler targer)
         {
-            
+            whichOne = Delegates.Delegate_ActiveDocumentChanged;
+            myRiches[currentIndex].TextChanged += targer;
         }
+        #endregion
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            currentIndex = tabControl1.SelectedIndex;
-        }
+
     }
 }

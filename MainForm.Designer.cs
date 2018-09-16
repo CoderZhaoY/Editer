@@ -58,7 +58,7 @@
             this.关于ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.查看帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.插件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.DocTimer = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.infoLb = new System.Windows.Forms.ToolStripStatusLabel();
@@ -302,9 +302,9 @@
             this.插件ToolStripMenuItem.Text = "插件";
             this.插件ToolStripMenuItem.Click += new System.EventHandler(this.插件ToolStripMenuItem_Click);
             // 
-            // timer1
+            // DocTimer
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.DocTimer.Tick += new System.EventHandler(this.DocTimer_Tick);
             // 
             // statusStrip1
             // 
@@ -496,7 +496,7 @@
         private System.Windows.Forms.ToolStripMenuItem 自动换行ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 工具栏ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 查看帮助ToolStripMenuItem;
-        public System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer DocTimer;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.TabControl tabControl1;

@@ -5,6 +5,7 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Editer", "Editer.csproj", "{21163F98-1B24-41D9-B197-0B8D8DFA0FE7}"
 	ProjectSection(ProjectDependencies) = postProject
+		{5B03ABB9-2E05-495A-8EF0-2703ACFC309F} = {5B03ABB9-2E05-495A-8EF0-2703ACFC309F}
 		{46155EDF-59F5-49B4-B308-F5D530F21774} = {46155EDF-59F5-49B4-B308-F5D530F21774}
 	EndProjectSection
 EndProject
@@ -28,8 +29,8 @@ Global
 		{46155EDF-59F5-49B4-B308-F5D530F21774}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{5B03ABB9-2E05-495A-8EF0-2703ACFC309F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5B03ABB9-2E05-495A-8EF0-2703ACFC309F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B03ABB9-2E05-495A-8EF0-2703ACFC309F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B03ABB9-2E05-495A-8EF0-2703ACFC309F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B03ABB9-2E05-495A-8EF0-2703ACFC309F}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B03ABB9-2E05-495A-8EF0-2703ACFC309F}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

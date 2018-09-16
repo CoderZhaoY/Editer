@@ -1,30 +1,38 @@
 ﻿using CSPluginKernel;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Editer
 {
     class MyRichTextBox : RichTextBox, IDocumentObject
     {
-
-        public string DocSelectionText { get => SelectedText; set { DocSelectionText = SelectedText; } }
-        public Color DocSelectionColor { get => SelectionColor; set { DocSelectionColor = SelectionColor; } }
-        public Font DocSelectionFont { get => SelectionFont; set { DocSelectionFont = SelectionFont; } }
-        public int DocSelectionStart { get => SelectionStart; set { DocSelectionStart = SelectionStart; } }
-        public int DocSelectionLength { get => SelectionLength; set { DocSelectionLength = SelectionLength; } }
-        public string DocSelectionRTF { get => SelectedRtf; set { DocSelectionRTF = SelectedRtf; } }
-
+        
+        public string DocSelectionText { get => DocSelectionText = SelectedText; set { SelectedText = DocSelectionText; } }
+        public Color DocSelectionColor
+        {
+            get
+            {
+                return SelectionColor;
+            }
+            set
+            {
+                SelectionColor = value;
+            }
+        }
+        public Font DocSelectionFont { get => SelectionFont; set { SelectionFont = DocSelectionFont; } }
+        public int DocSelectionStart { get => SelectionStart; set { SelectionStart = DocSelectionStart; } }
+        public int DocSelectionLength { get => SelectionLength; set { SelectionLength = DocSelectionLength; } }
+        public string DocSelectionRTF { get => SelectedRtf; set { SelectedRtf = DocSelectionRTF; } }
+        
         public bool DocHasChanges => Modified = this.DocHasChanges;
 
+        public string DocText { get => this.Text; set { this.Text = this.DocText; } }
 
         public void DocAppendText(string str)
         {
             this.AppendText(str);
+           
         }
 
         public void DocCloseFile()
@@ -49,7 +57,11 @@ namespace Editer
 
         public void DocSelect(int start, int length)
         {
-            throw new NotImplementedException();
+            if (start>=0)
+            {
+                this.Select(start, length);
+            }
+            
         }
     }
 }

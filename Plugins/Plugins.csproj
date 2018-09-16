@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Plugins</RootNamespace>
-    <AssemblyName>Plugins</AssemblyName>
+    <AssemblyName>KeyWordTip</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,12 +16,13 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\KeyWordPlugin\</OutputPath>
+    <OutputPath>..\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\KeyWordPlugin\Plugins.xml</DocumentationFile>
-    <RegisterForComInterop>true</RegisterForComInterop>
+    <DocumentationFile>..\KeyWordPlugin\KeyWordTip.xml</DocumentationFile>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -44,16 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PluginKernel\IApplicationObject.cs" />
-    <Compile Include="PluginKernel\IDocumentObject.cs" />
-    <Compile Include="PluginKernel\IPlugin.cs" />
-    <Compile Include="PluginKernel\PluginInfoAttribute.cs" />
-    <Compile Include="Plugins\MyPlugin.cs" />
+    <Compile Include="Plugins\KeyWordTip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="KeyWordText\CKeyWords.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\CSPluginKernel\CSPluginKernel.csproj">
-      <Project>{46155EDF-59F5-49B4-B308-F5D530F21774}</Project>
+      <Project>{46155edf-59f5-49b4-b308-f5d530f21774}</Project>
       <Name>CSPluginKernel</Name>
     </ProjectReference>
   </ItemGroup>

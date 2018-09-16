@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -22,20 +23,14 @@ namespace CSPluginKernel
         /// 
         /// </summary>
         /// <param name="OperateRtb"></param>
-        void Run(RichTextBox OperateRtb);
+        void Work(IDocumentObject document);
         /// <summary>
-        /// 格式化RichTextBox
+        /// 响应事件
         /// </summary>
-        /// <param name="OperateRtb"></param>
-        string FormatText(RichTextBox OperateRtb);
-        /// <summary>
-        /// 以指定格式格式化文本
-        /// </summary>
-        /// <param name="OperateRtb"></param>
-        /// <param name="formate"></param>
-        string FormatTextBySettings(RichTextBox OperateRtb, Dictionary<string, string> formate);
-        
-    }
+        /// <param name="document"></param>
+        /// <param name=""></param>
+        void Response(object sender, EventArgs args);
+    } 
     public enum ConnectionResult
     {
         Connection_Success,

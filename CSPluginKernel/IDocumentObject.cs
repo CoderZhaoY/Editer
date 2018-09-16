@@ -10,13 +10,13 @@ namespace CSPluginKernel
     public interface IDocumentObject
     {
         //这些属性是RTB控件的相应属性的映射
+        string DocText { get; set; }
         string DocSelectionText { get; set; }
         Color DocSelectionColor { get; set; }
         Font DocSelectionFont { get; set; }
         int DocSelectionStart { get; set; }
         int DocSelectionLength { get; set; }
         string DocSelectionRTF { get; set; }
-
         bool DocHasChanges { get; }
 
         void DocSelect(int start, int length);
