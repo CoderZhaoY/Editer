@@ -39,7 +39,7 @@ namespace Editer
             {
                 types = asm.GetTypes();
             }
-            catch (Exception ex)
+            catch (Exception x)
             {
 
                 throw ;
@@ -65,7 +65,7 @@ namespace Editer
         private static bool IsValidPlugin(Type t)
         {
             bool ret = false;
-            Type[] interfaces = t.GetInterfaces();
+            Type[] interfaces = t.BaseType.GetInterfaces();
             foreach (Type theInterface in interfaces)
             {
                 if (theInterface.FullName == "CSPluginKernel.IPlugin")

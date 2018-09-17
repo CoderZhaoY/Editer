@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PluginsForCSPluginKernel.XMLReader" Collapsed="true">
+    <Position X="3.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAABAAAAAAAAAAIACAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>PluginsForCSPluginKernel\XMLReader.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PluginsForCSPluginKernel.KeyWordTip" Collapsed="true">
+    <Position X="5.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAiBAAAAAABAAAgAAAAAAABCAAAAAAAAABAEQAAAAAA=</HashCode>
+      <FileName>PluginsForCSPluginKernel\KeyWordTip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Plugins.CSPlugin">
+    <Position X="2" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAABAAAAAAAAAAIACAAIAAAAAACAEAAAAAAA=</HashCode>
+      <FileName>CSPlugin.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>

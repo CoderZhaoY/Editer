@@ -57,8 +57,8 @@
     <Reference Include="CSPluginKernel">
       <HintPath>CSPluginKernel\bin\Debug\CSPluginKernel.dll</HintPath>
     </Reference>
-    <Reference Include="Plugins">
-      <HintPath>Plugins\Plugins.dll</HintPath>
+    <Reference Include="EditerLibrary">
+      <HintPath>EditerLibrary\bin\Debug\EditerLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -80,9 +80,6 @@
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MyRichTextBox.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PluginLoader.cs" />
     <Compile Include="Program.cs" />

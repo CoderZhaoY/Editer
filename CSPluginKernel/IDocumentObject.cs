@@ -19,6 +19,8 @@ namespace CSPluginKernel
         string DocSelectionRTF { get; set; }
         bool DocHasChanges { get; }
 
+
+        //这些方法时RTB控件的相应方法的映射。
         void DocSelect(int start, int length);
         void DocAppendText(string str);
         void DocSaveFile(string fileName);

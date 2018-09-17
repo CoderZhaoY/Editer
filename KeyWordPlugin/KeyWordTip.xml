@@ -4,5 +4,45 @@
         <name>KeyWordTip</name>
     </assembly>
     <members>
+        <member name="F:Plugins.CSPlugin.app">
+            <summary>
+            插件加载到的应用程序对象
+            </summary>
+        </member>
+        <member name="F:Plugins.CSPlugin.documents">
+            <summary>
+            文档对象
+            </summary>
+        </member>
+        <member name="M:Plugins.CSPlugin.Connect(CSPluginKernel.IApplicationObject)">
+            <summary>
+            连接到主程序
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Plugins.CSPlugin.OnDestory">
+            <summary>
+            插件退出时
+            </summary>
+        </member>
+        <member name="M:Plugins.CSPlugin.OnLoad">
+            <summary>
+            插件加载时
+            </summary>
+        </member>
+        <member name="M:Plugins.CSPlugin.Response(System.Object,System.EventArgs)">
+            <summary>
+            插件响应用户界面的交互操作
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Plugins.CSPlugin.Work(CSPluginKernel.IDocumentObject)">
+            <summary>
+            插件运行
+            </summary>
+            <param name="document"></param>
+        </member>
     </members>
 </doc>
